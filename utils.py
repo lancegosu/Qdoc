@@ -77,7 +77,6 @@ def display_pdf_content(url, num_pages=1):
         for page_num in range(num_pages):
             page = pdf_document.load_page(page_num)
             page_text = page.get_text("text")
-            #print(f"Page {page_num + 1}:\n{page_text}\n{'-' * 40}")
             full_text += page_text
 
         pdf_document.close()
@@ -115,11 +114,3 @@ def generate_answer(question, article_text, conversation_history, model="gpt-3.5
     """
     response = get_completion(prompt, model)
     return response.strip()
-
-# Example usage
-# pdf_url = "https://arxiv.org/pdf/1706.03762.pdf"
-# print(summarize_from_pdf(pdf_url))
-
-# text = get_article_text("https://www.cnbc.com/2023/08/14/hawaii-wildfires-leave-at-least-96-dead-more-than-5b-in-damage.html")
-# test = generate_answer("what is the death toll", text)
-# print(test)
