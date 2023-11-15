@@ -12,10 +12,6 @@ openai.api_key = os.getenv('OPENAI_API_KEY')
 gsearch_api_key = os.getenv('GSEARCH_API_KEY')
 cse_id = os.getenv('CSE_ID')
 
-# openai.api_key  = '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'
-# gsearch_api_key = "AIzaSyAwfkaJACo1JBx8_IQurhHfUQwmfGiht4Q"
-# cse_id = "322de28083504460d"
-
 def get_completion(prompt, model="gpt-3.5-turbo"):
     messages = [{"role": "user", "content": prompt}]
     response = openai.ChatCompletion.create(
