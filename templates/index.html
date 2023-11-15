@@ -89,7 +89,7 @@
         <button type="submit">Summarize</button>
     </form>
     <br>
-    <div class="result-container" id="result2"></div> <!-- Result container for second form -->
+    <div class="result-container" id="result2"></div>
     <div id="loading-summarize" style="display: none;">
         <div class="loading-ellipsis">Loading<span class="dot1">.</span><span class="dot2">.</span><span class="dot3">.</span></div>
     </div>
@@ -257,7 +257,7 @@
             event.preventDefault(); // Prevent form submission
             showLoadingAnimationSummarize(); // Show loading animation
             const userInput2 = document.getElementById('text_input2').value;
-            const resultContainer = document.getElementById('result2'); // Get the result container for the second form
+            const resultContainer = document.getElementById('result2');
 
             // Set the article URL in the hidden input field
             document.getElementById('article_url').value = userInput2;
@@ -281,7 +281,7 @@
             showLoadingAnimationQuery(); // Show loading animation
             const userInput3 = document.getElementById('text_input3').value;
             const userInput2 = document.getElementById('text_input2').value;
-            const resultContainer = document.getElementById('result3'); // Get the result container for the first form
+            const resultContainer = document.getElementById('result3');
             const conversationContainer = document.getElementById('conversation'); // Get the conversation container
 
             fetch('/query', {
