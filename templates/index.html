@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Qdoc</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        h1 {
+            margin-top: 20px;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        input[type="text"] {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button[type="submit"] {
+            padding: 8px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        /* Styles for the result containers */
+        .result-container {
+            text-align: left; /* Align text to the left within the result containers */
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: white;
+            margin-top: 10px;
+        }
+
+        /* Styles for chat messages */
+        .user-message {
+            color: blue;
+        }
+
+        .system-message {
+            color: black;
+            margin-bottom: 20px; /* You can adjust this value to control the spacing */
+        }
+
+        .loading-ellipsis {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .loading-ellipsis .dot1,
+        .loading-ellipsis .dot2,
+        .loading-ellipsis .dot3 {
+            animation: ellipsis 1.5s infinite;
+        }
+
+        @keyframes ellipsis {
+            0% {
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Qdoc</h1>
+    <form id="textForm2">
+        <label for="text_input2">What article do you want to summarize?</label>
+        <input type="text" id="text_input2" name="user_input2" placeholder="Enter article URL here">
+        <button type="submit">Summarize</button>
+    </form>
+    <br>
+    <div class="result-container" id="result2"></div> <!-- Result container for second form -->
+    <div id="loading-summarize" style="display: none;">
+        <div class="loading-ellipsis">Loading<span class="dot1">.</span><span class="dot2">.</span><span class="dot3">.</span></div>
+    </div>
+    <br>
+    <button class="textToSpeechButton" data-result-container="result2">Listen to Result</button>
+    <button class="stopSpeechButton">Stop</button>
+
+    <form id="textForm3">
+        <label for="text_input3">Have a question about the article?</label>
+        <input type="text" id="text_input3" name="user_input3" placeholder="Speak or type your query here">
+        <!-- Hidden input field to store the article URL -->
+        <input type="hidden" id="article_url" name="article_url" value="">
+        <button type="button" class="speechRecognitionButton" data-input-field="text_input3">Speak</button>
+        <button type="submit">Query</button>
+    </form>
+    <br>
+    <div class="result-container" id="result3">
+        <div class="conversation-container">
+            <div class="conversation" id="conversation">
+                <!-- Conversation messages will be displayed here -->
+            </div>
+        </div>
+        <!-- Query results will also be displayed here -->
+    </div>
+    <div id="loading-query" style="display: none;">
+        <div class="loading-ellipsis">Loading<span class="dot1">.</span><span class="dot2">.</span><span class="dot3">.</span></div>
+    </div>
+    <br>
+    <button class="textToSpeechButton" data-result-container="result3">Listen to Result</button>
+    <button class="stopSpeechButton">Stop</button>
+    <button id="refreshButton">Refresh</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize the TTS feature for all forms
+            const synth = window.speechSynthesis;
+            let currentUtterance = null;
+
+            const textToSpeechButtons = document.querySelectorAll('.textToSpeechButton');
+            const stopSpeechButtons = document.querySelectorAll('.stopSpeechButton');
+
+            textToSpeechButtons.forEach(button => {
+                button.addEventListener('click', function(event) {
+                    // Stop any currently playing speech
+                    if (currentUtterance) {
+                        synth.cancel();
+                    }
+
+                    const resultContainerId = event.target.getAttribute('data-result-container');
+                    const resultContainer = document.getElementById(resultContainerId);
+
+                    // Check if it's the summarize result container
+                    if (resultContainerId === 'result2') {
+                        const resultText = resultContainer.textContent;
+                        if (resultText) {
+                            const utterance = new SpeechSynthesisUtterance(resultText);
+                            synth.speak(utterance);
+                            currentUtterance = utterance;
+                        } else {
+                            alert('There is no text to read.');
+                        }
+                    } else if (resultContainerId === 'result3') {
+                        // Filter out user messages and concatenate the system's messages for the query function
+                        const systemMessages = Array.from(resultContainer.querySelectorAll('.system-message')).map(messageDiv => {
+                            // Remove "System:" from the message
+                            return messageDiv.textContent.replace("System: ", "");
+                        });
+
+                        // Get the last system message
+                        const latestSystemMessage = systemMessages.length > 0 ? systemMessages[systemMessages.length - 1] : "";
+
+                        if (latestSystemMessage) {
+                            lastSystemMessage = latestSystemMessage;
+                            const utterance = new SpeechSynthesisUtterance(lastSystemMessage);
+                            synth.speak(utterance);
+                            currentUtterance = utterance;
+                        } else {
+                            alert('There are no system messages to read.');
+                        }
+                    }
+                });
+            });
+
+            stopSpeechButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Stop the currently playing speech
+                    if (currentUtterance) {
+                        synth.cancel();
+                    }
+                });
+            });
+
+            // Initialize speech recognition for all input fields
+            const speechRecognitionButtons = document.querySelectorAll('.speechRecognitionButton');
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            const recognition = new SpeechRecognition();
+
+            speechRecognitionButtons.forEach(button => {
+                const inputFieldId = button.getAttribute('data-input-field');
+                const inputField = document.getElementById(inputFieldId);
+
+                button.addEventListener('click', function() {
+                    recognition.start();
+
+                    recognition.onresult = function(event) {
+                        const speechToText = event.results[0][0].transcript;
+                        inputField.value = speechToText;
+                        recognition.stop();
+                    };
+
+                    recognition.onerror = function(event) {
+                        console.error('Speech recognition error:', event.error);
+                        recognition.stop();
+                    };
+                });
+            });
+
+            const refreshButton = document.getElementById('refreshButton');
+            refreshButton.addEventListener('click', function() {
+                // Clear the conversation on the client side
+                const conversationContainer = document.getElementById('conversation');
+                conversationContainer.innerHTML = '';
+
+                // Clear the conversation on the server side by making a POST request
+                fetch('/refresh', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                })
+                .then(response => response.text())
+                .then(result => {
+<!--                    // You can display a message or perform any additional actions upon refreshing-->
+<!--                    alert(result);-->
+                });
+            });
+
+        });
+
+        // Show the loading animation for the summarize function
+        function showLoadingAnimationSummarize() {
+            const loadingElement = document.getElementById('loading-summarize');
+            loadingElement.style.display = 'block';
+        }
+
+        // Hide the loading animation for the summarize function
+        function hideLoadingAnimationSummarize() {
+            const loadingElement = document.getElementById('loading-summarize');
+            loadingElement.style.display = 'none';
+        }
+
+        // Show the loading animation for the query function
+        function showLoadingAnimationQuery() {
+            const loadingElement = document.getElementById('loading-query');
+            loadingElement.style.display = 'block';
+        }
+
+        // Hide the loading animation for the query function
+        function hideLoadingAnimationQuery() {
+            const loadingElement = document.getElementById('loading-query');
+            loadingElement.style.display = 'none';
+        }
+
+        document.getElementById('textForm2').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+            showLoadingAnimationSummarize(); // Show loading animation
+            const userInput2 = document.getElementById('text_input2').value;
+            const resultContainer = document.getElementById('result2'); // Get the result container for the second form
+
+            // Set the article URL in the hidden input field
+            document.getElementById('article_url').value = userInput2;
+
+            fetch('/summarize', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `user_input2=${encodeURIComponent(userInput2)}`,
+            })
+            .then(response => response.text())
+            .then(result => {
+                resultContainer.textContent = result;
+                hideLoadingAnimationSummarize(); // Hide loading animation once the request is complete
+            });
+        });
+
+        document.getElementById('textForm3').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+            showLoadingAnimationQuery(); // Show loading animation
+            const userInput3 = document.getElementById('text_input3').value;
+            const userInput2 = document.getElementById('text_input2').value;
+            const resultContainer = document.getElementById('result3'); // Get the result container for the first form
+            const conversationContainer = document.getElementById('conversation'); // Get the conversation container
+
+            fetch('/query', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `user_input3=${encodeURIComponent(userInput3)}&user_input2=${encodeURIComponent(userInput2)}`,
+            })
+            .then(response => response.json())
+            .then(conversation => {
+                hideLoadingAnimationQuery(); // Hide loading animation once the request is complete
+
+                // Clear the conversation container
+                conversationContainer.innerHTML = "";
+
+                // Populate the conversation container with messages
+                conversation.forEach(message => {
+                    const messageDiv = document.createElement("div");
+                        if (message.role === "user") {
+                        // Add "user:" label for user messages
+                        messageDiv.className = "user-message";
+                        messageDiv.textContent = "User: " + message.message;
+                    } else {
+                        // Add "system:" label for system messages
+                        messageDiv.className = "system-message";
+                        messageDiv.textContent = "System: " + message.message;
+                    }
+                    conversationContainer.appendChild(messageDiv);
+                });
+
+                // Scroll to the bottom of the conversation container to show the latest message
+                conversationContainer.scrollTop = conversationContainer.scrollHeight;
+            });
+        });
+    </script>
+</body>
+</html>
