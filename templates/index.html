@@ -3,6 +3,7 @@
 <head>
     <title>Qdoc</title>
     <style>
+        /* CSS Styles for the page layout and elements */
         body {
             font-family: Arial, sans-serif;
             text-align: center;
@@ -38,12 +39,13 @@
 
         /* Styles for the result containers */
         .result-container {
-            text-align: left; /* Align text to the left within the result containers */
+            text-align: left;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
             background-color: white;
             margin-top: 10px;
+            white-space: pre-line; /* Allows line breaks in the container */
         }
 
         /* Styles for chat messages */
@@ -83,20 +85,22 @@
 </head>
 <body>
     <h1>Qdoc</h1>
+    <!-- Form for summarizing an article -->
     <form id="textForm2">
         <label for="text_input2">What article do you want to summarize?</label>
         <input type="text" id="text_input2" name="user_input2" placeholder="Enter article URL here">
         <button type="submit">Summarize</button>
     </form>
     <br>
-    <div class="result-container" id="result2"></div>
+    <div class="result-container" id="result2"></div> <!-- Result container for first form -->
     <div id="loading-summarize" style="display: none;">
         <div class="loading-ellipsis">Loading<span class="dot1">.</span><span class="dot2">.</span><span class="dot3">.</span></div>
     </div>
     <br>
+    <!-- Buttons for text-to-speech and stopping speech -->
     <button class="textToSpeechButton" data-result-container="result2">Listen to Result</button>
     <button class="stopSpeechButton">Stop</button>
-
+    <!-- Form for asking a question about the article -->
     <form id="textForm3">
         <label for="text_input3">Have a question about the article?</label>
         <input type="text" id="text_input3" name="user_input3" placeholder="Speak or type your query here">
@@ -106,6 +110,7 @@
         <button type="submit">Query</button>
     </form>
     <br>
+    <!-- Result container for the question form -->
     <div class="result-container" id="result3">
         <div class="conversation-container">
             <div class="conversation" id="conversation">
@@ -118,29 +123,28 @@
         <div class="loading-ellipsis">Loading<span class="dot1">.</span><span class="dot2">.</span><span class="dot3">.</span></div>
     </div>
     <br>
+    <!-- Buttons for text-to-speech and stopping speech -->
     <button class="textToSpeechButton" data-result-container="result3">Listen to Result</button>
     <button class="stopSpeechButton">Stop</button>
     <button id="refreshButton">Refresh</button>
 
+    <!-- JavaScript code for handling form submissions and interactions -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Initialize the TTS feature for all forms
             const synth = window.speechSynthesis;
             let currentUtterance = null;
-
+            // Event listeners for TTS buttons and speech stopping buttons
             const textToSpeechButtons = document.querySelectorAll('.textToSpeechButton');
             const stopSpeechButtons = document.querySelectorAll('.stopSpeechButton');
-
             textToSpeechButtons.forEach(button => {
                 button.addEventListener('click', function(event) {
                     // Stop any currently playing speech
                     if (currentUtterance) {
                         synth.cancel();
                     }
-
                     const resultContainerId = event.target.getAttribute('data-result-container');
                     const resultContainer = document.getElementById(resultContainerId);
-
                     // Check if it's the summarize result container
                     if (resultContainerId === 'result2') {
                         const resultText = resultContainer.textContent;
@@ -157,10 +161,8 @@
                             // Remove "System:" from the message
                             return messageDiv.textContent.replace("System: ", "");
                         });
-
                         // Get the last system message
                         const latestSystemMessage = systemMessages.length > 0 ? systemMessages[systemMessages.length - 1] : "";
-
                         if (latestSystemMessage) {
                             lastSystemMessage = latestSystemMessage;
                             const utterance = new SpeechSynthesisUtterance(lastSystemMessage);
@@ -186,14 +188,11 @@
             const speechRecognitionButtons = document.querySelectorAll('.speechRecognitionButton');
             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
             const recognition = new SpeechRecognition();
-
             speechRecognitionButtons.forEach(button => {
                 const inputFieldId = button.getAttribute('data-input-field');
                 const inputField = document.getElementById(inputFieldId);
-
                 button.addEventListener('click', function() {
                     recognition.start();
-
                     recognition.onresult = function(event) {
                         const speechToText = event.results[0][0].transcript;
                         inputField.value = speechToText;
@@ -207,12 +206,12 @@
                 });
             });
 
+            // Event listener for the refresh button
             const refreshButton = document.getElementById('refreshButton');
             refreshButton.addEventListener('click', function() {
                 // Clear the conversation on the client side
                 const conversationContainer = document.getElementById('conversation');
                 conversationContainer.innerHTML = '';
-
                 // Clear the conversation on the server side by making a POST request
                 fetch('/refresh', {
                     method: 'POST',
@@ -222,43 +221,37 @@
                 })
                 .then(response => response.text())
                 .then(result => {
-<!--                    // You can display a message or perform any additional actions upon refreshing-->
-<!--                    alert(result);-->
                 });
             });
-
         });
 
-        // Show the loading animation for the summarize function
+        // Functions to show/hide loading animations for summarization and querying
         function showLoadingAnimationSummarize() {
             const loadingElement = document.getElementById('loading-summarize');
             loadingElement.style.display = 'block';
         }
 
-        // Hide the loading animation for the summarize function
         function hideLoadingAnimationSummarize() {
             const loadingElement = document.getElementById('loading-summarize');
             loadingElement.style.display = 'none';
         }
 
-        // Show the loading animation for the query function
         function showLoadingAnimationQuery() {
             const loadingElement = document.getElementById('loading-query');
             loadingElement.style.display = 'block';
         }
 
-        // Hide the loading animation for the query function
         function hideLoadingAnimationQuery() {
             const loadingElement = document.getElementById('loading-query');
             loadingElement.style.display = 'none';
         }
 
+        // Event listener for the article summarization form
         document.getElementById('textForm2').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent form submission
             showLoadingAnimationSummarize(); // Show loading animation
             const userInput2 = document.getElementById('text_input2').value;
-            const resultContainer = document.getElementById('result2');
-
+            const resultContainer = document.getElementById('result2'); // Get the result container for the first form
             // Set the article URL in the hidden input field
             document.getElementById('article_url').value = userInput2;
 
@@ -276,12 +269,13 @@
             });
         });
 
+        // Event listener for the article querying form
         document.getElementById('textForm3').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent form submission
             showLoadingAnimationQuery(); // Show loading animation
             const userInput3 = document.getElementById('text_input3').value;
             const userInput2 = document.getElementById('text_input2').value;
-            const resultContainer = document.getElementById('result3');
+            const resultContainer = document.getElementById('result3'); // Get the result container for the second form
             const conversationContainer = document.getElementById('conversation'); // Get the conversation container
 
             fetch('/query', {
@@ -294,10 +288,8 @@
             .then(response => response.json())
             .then(conversation => {
                 hideLoadingAnimationQuery(); // Hide loading animation once the request is complete
-
                 // Clear the conversation container
                 conversationContainer.innerHTML = "";
-
                 // Populate the conversation container with messages
                 conversation.forEach(message => {
                     const messageDiv = document.createElement("div");
@@ -312,7 +304,6 @@
                     }
                     conversationContainer.appendChild(messageDiv);
                 });
-
                 // Scroll to the bottom of the conversation container to show the latest message
                 conversationContainer.scrollTop = conversationContainer.scrollHeight;
             });
