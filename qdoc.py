@@ -32,15 +32,15 @@ def query():
     if article_text is None:
         return "Failed to retrieve article text."
 
-    answer = generate_answer(user_question, article_text, conversation_history) # Generate an answer using the user's question, article text, and conversation history
+    answer = generate_answer(user_question, article_text, conversation_history)
     conversation_history.append({"role": "system", "message": answer}) # Add the system's answer to the conversation history
 
-    return jsonify(conversation_history) # Return the conversation history as a JSON response
+    return jsonify(conversation_history)
 
 @app.route('/refresh', methods=['POST'])
 def refresh():
     global conversation_history
-    conversation_history.clear() # Clear the conversation history
+    conversation_history.clear()
     return ('', 204)  # Return an empty response with a status code 204 (No Content)
 
 if __name__ == '__main__':
