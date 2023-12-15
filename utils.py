@@ -1,4 +1,4 @@
-import openai
+from openai import OpenAI
 import requests
 from bs4 import BeautifulSoup
 import fitz  # PyMuPDF
@@ -8,17 +8,17 @@ from dotenv import load_dotenv
 load_dotenv()  # Load environment variables from .env file
 
 # Access your environment variables
-openai.api_key = os.getenv('OPENAI_API_KEY')
+client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
 
 # Function to get completion using OpenAI's Chat API
-def get_completion(prompt, model="gpt-3.5-turbo"):
-    messages = [{"role": "user", "content": prompt}]
-    response = openai.ChatCompletion.create(
+def get_completion(prompt, model="gpt-3.5-turbo-1106"):
+    chat_completion = client.chat.completions.create(
+        messages=[
+            {"role": "user", "content": prompt},
+        ],
         model=model,
-        messages=messages,
-        temperature=0, # Degree of randomness of the model's output
     )
-    return response.choices[0].message["content"]
+    return chat_completion.choices[0].message.content
 
 # Function to download content from a given URL
 def download_url(url):
