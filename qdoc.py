@@ -15,7 +15,7 @@ def summarize():
 
     # Check if the URL is empty
     if not url:
-        return "Please provide a valid article URL."
+        return "Please provide a valid article URL or PDF."
     
     # Check if the URL ends with ".pdf" to determine if it's a PDF file
     if url.endswith(".pdf"):
