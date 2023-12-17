@@ -85,6 +85,7 @@
 </head>
 <body>
     <h1>Qdoc</h1>
+    
     <!-- Form for summarizing an article -->
     <form id="textForm2">
         <label for="text_input2">What article do you want to summarize?</label>
@@ -92,14 +93,18 @@
         <button type="submit">Summarize</button>
     </form>
     <br>
+    
     <div class="result-container" id="result2"></div> <!-- Result container for first form -->
+    
     <div id="loading-summarize" style="display: none;">
         <div class="loading-ellipsis">Loading<span class="dot1">.</span><span class="dot2">.</span><span class="dot3">.</span></div>
     </div>
     <br>
+    
     <!-- Buttons for text-to-speech and stopping speech -->
     <button class="textToSpeechButton" data-result-container="result2">Listen to Result</button>
     <button class="stopSpeechButton">Stop</button>
+    
     <!-- Form for asking a question about the article -->
     <form id="textForm3">
         <label for="text_input3">Have a question about the article?</label>
@@ -109,6 +114,7 @@
         <button type="submit">Query</button>
     </form>
     <br>
+    
     <!-- Result container for the question form -->
     <div class="result-container" id="result3">
         <div class="conversation-container">
@@ -118,10 +124,12 @@
         </div>
         <!-- Query results will also be displayed here -->
     </div>
+    
     <div id="loading-query" style="display: none;">
         <div class="loading-ellipsis">Loading<span class="dot1">.</span><span class="dot2">.</span><span class="dot3">.</span></div>
     </div>
     <br>
+    
     <!-- Buttons for text-to-speech and stopping speech -->
     <button class="textToSpeechButton" data-result-container="result3">Listen to Result</button>
     <button class="stopSpeechButton">Stop</button>
