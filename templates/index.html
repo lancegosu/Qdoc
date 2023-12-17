@@ -48,6 +48,19 @@
             white-space: pre-line; /* Allows line breaks in the container */
         }
 
+        /* Styles for the conversation container */
+        .conversation-container {
+            max-height: 300px; /* Set a maximum height for the conversation container */
+            overflow-y: auto; /* Enable vertical scrolling when content exceeds the maximum height */
+            text-align: left;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: white;
+            margin-top: 10px;
+            white-space: pre-line;
+        }
+
         /* Styles for chat messages */
         .user-message {
             color: blue;
@@ -94,7 +107,7 @@
     </form>
     <br>
     
-    <div class="result-container" id="result2"></div> <!-- Result container for first form -->
+    <div class="result-container" id="result2"></div> <!-- Result container for Summary -->
     
     <div id="loading-summarize" style="display: none;">
         <div class="loading-ellipsis">Loading<span class="dot1">.</span><span class="dot2">.</span><span class="dot3">.</span></div>
@@ -115,14 +128,11 @@
     </form>
     <br>
     
-    <!-- Result container for the question form -->
+    <!-- Result container for Query -->
     <div class="result-container" id="result3">
-        <div class="conversation-container">
-            <div class="conversation" id="conversation">
-                <!-- Conversation messages will be displayed here -->
-            </div>
+        <div class="conversation-container" id="conversation">
+            <!-- Conversation messages will be displayed here -->
         </div>
-        <!-- Query results will also be displayed here -->
     </div>
     
     <div id="loading-query" style="display: none;">
