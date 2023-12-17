@@ -102,7 +102,7 @@ def convert_history(conversation_history):
     return history_string
 
 # Function to generate an answer using conversation history, article text, and a given question
-def generate_answer(question, article_text, conversation_history, model="gpt-3.5-turbo"):
+def generate_answer(question, article_text, conversation_history, model="gpt-3.5-turbo-1106"):
     conversation_history = convert_history(conversation_history)
     prompt = f"""
     Previous conversation: {conversation_history}
