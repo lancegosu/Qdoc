@@ -287,11 +287,18 @@
         // Event listener for the article querying form
         document.getElementById('textForm3').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent form submission
-            showLoadingAnimationQuery(); // Show loading animation
-            const userInput3 = document.getElementById('text_input3').value;
-            const userInput2 = document.getElementById('text_input2').value;
+            const userInput3 = document.getElementById('text_input3').value.trim();
+            const userInput2 = document.getElementById('text_input2').value.trim();
             const resultContainer = document.getElementById('result3'); // Get the result container for the second form
             const conversationContainer = document.getElementById('conversation'); // Get the conversation container
+
+            // Check if the user input is empty
+            if (!userInput3 || !userInput2) {
+                alert('Please provide both a valid question and article URL.');
+                return;
+            }
+
+            showLoadingAnimationQuery(); // Show loading animation
 
             fetch('/query', {
                 method: 'POST',
@@ -307,7 +314,7 @@
                 // Populate the conversation container with messages
                 conversation.forEach(message => {
                     const messageDiv = document.createElement("div");
-                        if (message.role === "user") {
+                    if (message.role === "user") {
                         // Add "user:" label for user messages
                         messageDiv.className = "user-message";
                         messageDiv.textContent = "User: " + message.message;
@@ -320,6 +327,10 @@
                 });
                 // Scroll to the bottom of the conversation container to show the latest message
                 conversationContainer.scrollTop = conversationContainer.scrollHeight;
+            })
+            .catch(error => {
+                console.error('Error in fetch request:', error);
+                hideLoadingAnimationQuery(); // Hide loading animation in case of an error
             });
         });
     </script>
