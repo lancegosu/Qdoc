@@ -43,7 +43,7 @@ def extract_visible_text(html_content):
         return None
 
 # Function to summarize content from a given URL
-def summarize_from_url(url, instruction="Summarize the following text using simple language that anyone can understand in English"):
+def summarize_from_url(url, instruction="Summarize the following text in 3 to 5 sentences using simple language that anyone can understand in English"):
     html_text = download_url(url)
     text = extract_visible_text(html_text)
     prompt = f"""
