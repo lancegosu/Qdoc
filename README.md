@@ -2,6 +2,7 @@
 Qdoc is an intelligent article assistant powered by a Large Language Model (LLM). It enhances your experience with articles by providing summarization and question-answering capabilities. Whether you have a lengthy article or a complex research paper, Qdoc helps you quickly understand and interact with the content.
 
 Purpose
+
 The purpose of Qdoc is to make information consumption more efficient and interactive. It seamlessly integrates with articles through URL or PDF inputs, offering summarized content and the ability to engage in a dynamic question-answering conversation. Qdoc is designed to be practical, user-friendly, and a valuable tool for anyone dealing with information-rich documents.
 
 Features
