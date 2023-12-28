@@ -27,7 +27,7 @@ Features
 Setup
 1. Clone the Repository:
 
-- git clone https://github.com/your-username/Qdoc.git
+- git clone https://github.com/lancerai/Qdoc.git
 
 - cd Qdoc
 
