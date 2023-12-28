@@ -27,37 +27,37 @@ The purpose of Qdoc is to make information consumption more efficient and intera
 
 ## Setup
 
-### 1. **Clone the Repository:**
+### 1. Clone the Repository:
 
 - git clone https://github.com/lancerai/Qdoc.git
 - cd Qdoc
 
 
-### 2. **Install Dependencies:**
+### 2. Install Dependencies:
 
 - pip install -r requirements.txt
 
-### 3. **Set Up OpenAI API Key:**
+### 3. Set Up OpenAI API Key:
 Create a .env file in the project root and add your OpenAI API key:
 
 - OPENAI_API_KEY=your-api-key
 
-### 4. **Run the Application:**
+### 4. Run the Application:
 
 - python qdoc.py
 
 ## Usage
 
-### 1. **Access Qdoc:**
+### 1. Access Qdoc:
 
 - Open your browser and go to http://127.0.0.1:5000/.
 
-### 2. **Summarize an Article:**
+### 2. Summarize an Article:
 
 - Enter the article URL or PDF link in the respective form.
 - Click "Summarize" to receive a summary of the content.
 
-### 3. **Engage in Q&A:**
+### 3. Engage in Q&A:
 
 - Ask questions about the article, and receive insightful answers.
 - The conversation history is displayed, allowing for context-aware interactions.
@@ -71,6 +71,7 @@ Create a .env file in the project root and add your OpenAI API key:
 
 - Qdoc uses OpenAI's Chat API for language model interactions.
 - Handle API rate limits based on your OpenAI subscription.
+
 
 
 Enjoy using Qdoc, your intelligent companion for exploring articles effortlessly!
