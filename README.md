@@ -26,19 +26,23 @@ Features
 
 Setup
 1. Clone the Repository:
-git clone https://github.com/your-username/Qdoc.git
 
-cd Qdoc
+- git clone https://github.com/your-username/Qdoc.git
+
+- cd Qdoc
 
 2. Install Dependencies:
--pip install -r requirements.txt
+
+- pip install -r requirements.txt
 
 3. Set Up OpenAI API Key:
 Create a .env file in the project root and add your OpenAI API key:
-OPENAI_API_KEY=your-api-key
+
+- OPENAI_API_KEY=your-api-key
 
 4. Run the Application:
-python qdoc.py
+
+- python qdoc.py
 
 Usage
 1. Access Qdoc:
