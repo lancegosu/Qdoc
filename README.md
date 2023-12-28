@@ -21,6 +21,7 @@ Visualize History: The conversation history is displayed, allowing you to track 
 Setup
 1. Clone the Repository:
 git clone https://github.com/your-username/Qdoc.git
+
 cd Qdoc
 
 2. Install Dependencies:
