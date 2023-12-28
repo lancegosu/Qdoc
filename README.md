@@ -62,4 +62,8 @@ The purpose of Qdoc is to make information consumption more efficient and intera
 ## Contributing
 Contributions are welcome! Feel free to open issues and pull requests.
 
+## Note
+
+Make sure to comply with OpenAI's use-case policies and guidelines when using this app.
+
 Enjoy using Qdoc, your intelligent companion for exploring articles effortlessly!
