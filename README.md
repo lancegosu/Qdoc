@@ -7,16 +7,16 @@ The purpose of Qdoc is to make information consumption more efficient and intera
 
 Features
 1. Summarization from URL or PDF
-Input Flexibility: Enter the URL of an online article or a link to a PDF document.
-Content Summarization: Receive a concise and easily understandable summary of the article.
+-Input Flexibility: Enter the URL of an online article or a link to a PDF document.
+-Content Summarization: Receive a concise and easily understandable summary of the article.
 
 2. Dynamic Question-Answering
-Ask Questions: Inquire about specific details or seek clarification regarding the article.
-Context-Aware Responses: Qdoc maintains a conversation history to provide context-aware answers.
+-Ask Questions: Inquire about specific details or seek clarification regarding the article.
+-Context-Aware Responses: Qdoc maintains a conversation history to provide context-aware answers.
 
 3. Conversation History
-Follow-Up Queries: Seamlessly ask follow-up questions based on the ongoing conversation.
-Visualize History: The conversation history is displayed, allowing you to track interactions.
+-Follow-Up Queries: Seamlessly ask follow-up questions based on the ongoing conversation.
+-Visualize History: The conversation history is displayed, allowing you to track interactions.
 
 Setup
 1. Clone the Repository:
@@ -25,7 +25,7 @@ git clone https://github.com/your-username/Qdoc.git
 cd Qdoc
 
 2. Install Dependencies:
-pip install -r requirements.txt
+-pip install -r requirements.txt
 
 3. Set Up OpenAI API Key:
 Create a .env file in the project root and add your OpenAI API key:
