@@ -66,4 +66,4 @@ Contributions are welcome! Feel free to open issues and pull requests.
 
 Make sure to comply with OpenAI's use-case policies and guidelines when using this app.
 
-Enjoy using Qdoc, your intelligent companion for exploring articles effortlessly!
+#### Enjoy using Qdoc, your intelligent companion for exploring articles effortlessly!
