@@ -78,6 +78,4 @@ Create a .env file in the project root and add your OpenAI API key:
 - Qdoc uses OpenAI's Chat API for language model interactions.
 - Handle API rate limits based on your OpenAI subscription.
 
-
-
 Enjoy using Qdoc, your intelligent companion for exploring articles effortlessly!
