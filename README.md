@@ -79,3 +79,65 @@ Create a .env file in the project root and add your OpenAI API key:
 - Handle API rate limits based on your OpenAI subscription.
 
 Enjoy using Qdoc, your intelligent companion for exploring articles effortlessly!
+
+# Qdoc
+
+Qdoc is a project that utilizes a Language Model (LM) to summarize articles based on relevant aggregated content from a given URL or PDF. Additionally, it can answer questions related to the article using conversation history, the article's content, and common knowledge.
+
+## Table of Contents
+- [Features](#features)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Examples](#examples)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Features
+- **Summarization from URL or PDF:** Summarize the content of articles using a provided URL or PDF file.
+- **Question-Answering:** Ask questions related to the article, and the system generates answers based on conversation history and article content.
+- **Conversation History:** Maintain a conversation history to improve context-aware question-answering.
+
+## Prerequisites
+- Python 3.x
+- [OpenAI API Key](https://beta.openai.com/signup/)
+- Dependencies listed in the `requirements.txt` file.
+
+## Installation
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/yourusername/Qdoc.git
+    cd Qdoc
+    ```
+2. Install dependencies:
+    ```bash
+    pip install -r requirements.txt
+    ```
+3. Set up your OpenAI API key by adding it to the `.env` file:
+    ```dotenv
+    OPENAI_API_KEY=your-api-key-here
+    ```
+4. Run the application:
+    ```bash
+    python qdoc.py
+    ```
+
+## Usage
+1. Visit [http://127.0.0.1:5000/](http://127.0.0.1:5000/) in your web browser.
+2. Summarize an article by providing the URL or PDF.
+3. Ask questions about the article to receive context-aware answers.
+
+## Examples
+### Summarize an Article
+- Provide the article URL or PDF.
+![Summarize Example](images/summarize-example.png)
+
+### Ask Questions
+- Enter your question and the article URL to receive answers.
+![Query Example](images/query-example.png)
+
+## Contributing
+Contributions are welcome! Feel free to open issues and pull requests.
+
+## License
+This project is licensed under the [MIT License](LICENSE).
