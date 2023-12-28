@@ -46,25 +46,31 @@ Create a .env file in the project root and add your OpenAI API key:
 
 - python qdoc.py
 
-Usage
-1. Access Qdoc:
-Open your browser and go to http://127.0.0.1:5000/.
+## Usage
 
-2. Summarize an Article:
-Enter the article URL or PDF link in the respective form.
-Click "Summarize" to receive a summary of the content.
+### 1. **Access Qdoc:**
 
-3. Engage in Q&A:
-Ask questions about the article, and receive insightful answers.
-The conversation history is displayed, allowing for context-aware interactions.
+- Open your browser and go to http://127.0.0.1:5000/.
 
-4. Follow-Up Queries:
-Continue the conversation with follow-up questions.
-Qdoc dynamically adapts to the ongoing dialogue.
+### 2. **Summarize an Article:**
 
-Additional Information
-Qdoc uses OpenAI's Chat API for language model interactions.
-Handle API rate limits based on your OpenAI subscription.
+- Enter the article URL or PDF link in the respective form.
+- Click "Summarize" to receive a summary of the content.
+
+### 3. **Engage in Q&A:**
+
+- Ask questions about the article, and receive insightful answers.
+- The conversation history is displayed, allowing for context-aware interactions.
+
+### 4. Follow-Up Queries:
+
+- Continue the conversation with follow-up questions.
+- Qdoc dynamically adapts to the ongoing dialogue.
+
+### Additional Information
+
+- Qdoc uses OpenAI's Chat API for language model interactions.
+- Handle API rate limits based on your OpenAI subscription.
 
 
 Enjoy using Qdoc, your intelligent companion for exploring articles effortlessly!
