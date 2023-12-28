@@ -13,6 +13,7 @@ The purpose of Qdoc is to make information consumption more efficient and intera
 - [Usage](#usage)
 - [Examples](#examples)
 - [Contributing](#contributing)
+- [Note](#note)
 
 ## Features
 - **Summarization from URL or PDF:** Summarize the contents of an article by providing a URL or PDF link.
@@ -66,4 +67,4 @@ Contributions are welcome! Feel free to open issues and pull requests.
 
 Make sure to comply with OpenAI's use-case policies and guidelines when using this app.
 
-#### Enjoy using Qdoc, your intelligent companion for exploring articles effortlessly!
+### Enjoy using Qdoc, your intelligent companion for exploring articles effortlessly!
