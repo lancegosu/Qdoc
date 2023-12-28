@@ -23,7 +23,9 @@ The purpose of Qdoc is to make information consumption more efficient and intera
 - **Follow-Up Queries:** Seamlessly ask follow-up questions based on the ongoing conversation.
 - **Visualize History:** The conversation history is displayed, allowing you to track interactions.
 
+### 4. Refresh Conversation
 
+- **Start Anew:** Clear the conversation history to initiate a fresh dialogue.
 
 ## Setup
 
@@ -66,6 +68,10 @@ Create a .env file in the project root and add your OpenAI API key:
 
 - Continue the conversation with follow-up questions.
 - Qdoc dynamically adapts to the ongoing dialogue.
+
+### 5. Refresh Conversation:
+
+- Click "Refresh" to clear the conversation history and start a new interaction.
 
 ### Additional Information
 
