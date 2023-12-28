@@ -29,7 +29,7 @@ The purpose of Qdoc is to make information consumption more efficient and intera
 
 ### 1. **Clone the Repository:**
 
-- git clone https://github.com/your-username/Qdoc.git
+- git clone https://github.com/lancerai/Qdoc.git
 - cd Qdoc
 
 
