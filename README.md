@@ -1,6 +1,6 @@
 # Qdoc - AI-powered Article Assistant
 
-Qdoc utilizes a Large Language Model (LLM) to summarize articles from a given URL or PDF. Additionally, it can answer questions related to the article using the conversation history, the article's content, and common knowledge.
+Qdoc is a Flask web application that utilizes a Large Language Model (LLM) to summarize articles from a given URL or PDF. Additionally, it can answer questions related to the article using the conversation history, the article's content, and common knowledge.
 
 ## Purpose
 
