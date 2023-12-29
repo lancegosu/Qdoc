@@ -11,7 +11,6 @@ The purpose of Qdoc is to make information consumption more efficient and intera
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Examples](#examples)
 - [Contributing](#contributing)
 - [Note](#note)
 
