@@ -2,17 +2,18 @@
 
 Qdoc is a Flask web application that utilizes a Large Language Model (LLM) to summarize articles from a given URL or PDF. Additionally, it can answer questions related to the article using the conversation history, the article's content, and common knowledge.
 
-## Purpose
-
-The purpose of Qdoc is to make information consumption more efficient and interactive. It seamlessly integrates with articles through URL or PDF inputs, offering summarized content and the ability to engage in a dynamic question-answering conversation. It is designed to be practical, user-friendly, and a valuable tool for anyone dealing with information-rich documents. Whether it is a lengthy article or a complex research paper, Qdoc can help with quickly understanding and interacting with the content.
-
 ## Table of Contents
+- [Purpose](#purpose)
 - [Features](#features)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Contributing](#contributing)
 - [Note](#note)
+
+## Purpose
+
+The purpose of Qdoc is to make information consumption more efficient and interactive. It seamlessly integrates with articles through URL or PDF inputs, offering summarized content and the ability to engage in a dynamic question-answering conversation. It is designed to be practical, user-friendly, and a valuable tool for anyone dealing with information-rich documents. Whether it is a lengthy article or a complex research paper, Qdoc can help with quickly understanding and interacting with the content.
 
 ## Features
 - **Summarization from URL or PDF:** Summarize the contents of an article by providing a URL or PDF link.
