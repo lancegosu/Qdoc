@@ -51,15 +51,6 @@ The purpose of Qdoc is to make information consumption more efficient and intera
 3. Ask questions about the article to receive insightful answers. Qdoc will dynamically adapt to the ongoing dialogue.
 4. Click "Refresh" to clear the conversation history and start a new interaction.
 
-## Examples
-### Summarize an Article
-- Provide the article URL or PDF.
-![Summarize Example](images/summarize-example.png)
-
-### Ask Questions
-- Enter your question and the article URL to receive answers.
-![Query Example](images/query-example.png)
-
 ## Contributing
 Contributions are welcome! Feel free to open issues and pull requests.
 
